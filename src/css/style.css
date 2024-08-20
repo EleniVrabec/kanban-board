@@ -104,7 +104,8 @@ li:active {
 .delete-btn{
     padding: 5px 15px;
     border: none;
-    background-color: coral;
+    background-color: rgb(252, 108, 56);
+    color: #f4f4f4;
     border-radius: 5px;
     cursor: pointer;
 }
