@@ -90,7 +90,7 @@ ul {
 }
 
 li {
-    box-shadow: 5px 15px 20px black;
+    box-shadow: 4px 5px 10px lightgray;
     display: flex;
     justify-content: space-between;
     padding: 10px;
