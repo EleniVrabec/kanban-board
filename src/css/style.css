@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #fdfdfd;
+    background-color: #7e7d7d;
     color: #333;
     padding: 20px;
     margin: 0;
@@ -90,12 +90,14 @@ ul {
 }
 
 li {
+    box-shadow: 5px 15px 20px black;
     display: flex;
     justify-content: space-between;
     padding: 10px;
     margin: 5px 0;
     border-radius: 5px;
     cursor: move;
+   
 }
 
 li:active {
