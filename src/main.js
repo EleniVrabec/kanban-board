@@ -3,9 +3,6 @@ import { getAuth, onAuthStateChanged, signOut, signInWithEmailAndPassword, creat
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from "firebase/firestore";
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
@@ -20,7 +17,6 @@ export const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
 const auth = getAuth(app);
 const db = getFirestore(app);
 
@@ -131,9 +127,10 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Error adding note: ", e);
     }
   }
-
+/* ------------------------------------------------------------------------------------ */
   // Function to display notes on the page
   async function displayNotes() {
+    console.log("Displaying notes...");
     const toDoList = document.getElementById("toDoList");
     const inProgressList = document.getElementById("inProgressList");
     const doneList = document.getElementById("doneList");
@@ -146,10 +143,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const querySnapshot = await getDocs(collection(db, "notes"));
     querySnapshot.forEach((doc) => {
       const note = doc.data();
+      console.log("Creating note: ", note.content);
       const li = document.createElement("li");
       li.textContent = `${note.content}  -  Assigned to: ${note.person}`;
       li.style.backgroundColor = note.color || "#ffffff";
       li.dataset.id = doc.id;
+      li.draggable = true; 
+
+       // Add drag-and-drop functionality to each note
+      li.addEventListener("dragstart", handleDragStart);
+      li.addEventListener("dragend", handleDragEnd);
 
       // Add delete button
       const deleteBtn = document.createElement("button");
@@ -205,6 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
     column.addEventListener('dragover', (event) => {
       event.preventDefault();
       event.dataTransfer.dropEffect = 'move';
+      console.log(`Dragging over column: ${column.id}`);
     });
 
     column.addEventListener('drop', async (event) => {
