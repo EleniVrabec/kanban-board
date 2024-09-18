@@ -82,11 +82,14 @@ h1 {
 .kanban-column h2 {
     text-align: center;
 }
-
-ul {
-    
-    list-style-type: none;
-    padding: 0;
+ul{
+padding: 0;
+  list-style-type: none;
+  height: 100%;
+  border-top-width: 4rem;
+  border-style: solid;
+  transform: translateY(-4rem);
+  border-color: transparent;
 }
 
 li {
